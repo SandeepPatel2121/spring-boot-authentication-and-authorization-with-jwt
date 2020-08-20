@@ -60,14 +60,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
                 json = ow.writeValueAsString(rs);
             }
-        } else {
-            rs = ResponseStatus.create(HttpResponseStatus.ACCESS_TOKEN_MISSING,
-                    null,
-                    HttpStatus.FORBIDDEN, HttpStatus.FORBIDDEN.value());
-            res.setContentType("application/json");
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            json = ow.writeValueAsString(rs);
-        }
+        } 
+//        ByPass For login not working here
+//        else {
+//            rs = ResponseStatus.create(HttpResponseStatus.ACCESS_TOKEN_MISSING,
+//                    null,
+//                    HttpStatus.FORBIDDEN, HttpStatus.FORBIDDEN.value());
+//            res.setContentType("application/json");
+//            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+//            json = ow.writeValueAsString(rs);
+//        }
+        
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             if (jwtUtil.validateToken(authToken, userDetails)) {
