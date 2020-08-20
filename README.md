@@ -13,7 +13,7 @@ INSERT INTO user_roles (user_id, role_id) VALUES (2, 2);
 
 Login API
 
-localhost:8080/auth/login
+localhost:8080/login
 POST
 DATA OF USER LOGIN : {
     "username": "user2",
